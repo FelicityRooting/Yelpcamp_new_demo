@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- Make site responsive on mobile/tablet -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--这里的title改的页面最上面标签栏的显示-->
+        <title>Yelpcamp</title>
+        <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheet/main.css">
+    </head>
+    <body>
+    
+    <nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">YelpCamp</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <% if(!currentUser){ %>
+                  <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
+                  <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>"><a href="/register">Sign Up</a></li>
+              <% } else { %>
+                  <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                  <li><a href="/logout">Logout</a></li>
+              <% } %>
+          </ul>
+        </div>
+    </div>
+</nav>
+    
+    <!--navbar可以从bootstrap上摘取现成的-->
+    <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+        <!--container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器。-->
+    <!--    <div class="container-fluid">-->
+    <!--        <div class="navbar-header">-->
+                <!--navbar-brand设置导航条组件内的品牌图标-->
+    <!--            <a class="navbar-brand" href="/">YelpCamp</a>-->
+    <!--        </div>-->
+            <!--响应式的导航栏collapse,可折叠, navbar-collapse设置div元素为导航条组件各列表项的父元素-->
+    <!--        <div class="collapse navbar-collapse">-->
+                <!--navbar设置nav元素为导航条组件, navbar-nav设置ul为导航条组件内的列表元素, navbar-right设置导航条内元素向右对齐, 
+    <!--            <nav> 标签定义导航链接的部分-->
+    <!--            <ul class="nav navbar-nav ml-auto"><!--很多地方都和原视频不一样，因为bootstrap版本不一样-->
+    <!--                 if (!currentUser) { %>-->
+    <!--                    <li class="nav-item"><a class="nav-link" href="/register">signup</a></li>-->
+    <!--                    <li class="nav-item"><a class="nav-link" href="/login">login</a></li>-->
+    <!--                 } else { %>-->
+    <!--                    <li class="nav-item"><a class="nav-link" href="#">Hello  currentUser.username %></a></li>-->
+    <!--                    <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>-->
+    <!--                 } %>-->
+    <!--            </ul>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</nav>-->
+    <div class="container">
+        <% if(error && error.length > 0) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0) { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+    <div class="container">
+
+    

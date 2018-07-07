@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+
+<!--<div class="container">-->
+    <!--container，当缩放整个页面时，有container，container里的内容会适应页面大小改变，适合响应式布局-->
+    <!--<header> 标签用于定义文档的头部,它是所有头部元素的容器。-->
+    <!--超大屏幕（Jumbotron）。顾名思义该组件可以增加标题的大小，并为登陆页面内容添加更多的外边距（margin）-->
+    <header class="jumbotron">
+        <!--container，当缩放整个页面时，有container，container里的内容会适应页面大小改变，适合响应式布局-->
+        <div class="container">
+            <h1 class="display-3">our campgrounds!</h1>
+            <p>View our hand-picked campgrounds from EOZEA</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/campgrounds/new">add new campgrounds</a>
+                <!--add a container, .container 类用于固定宽度并支持响应式布局的容器。有container抱在一起的在大屏幕上才能显示居中的-->
+            </p>
+        </div>
+    </header>
+    <!--row在bootstrap当中就代表着一行, text-center可以让name那一行处于中间位置-->
+    <!--row后面那个style可以修复因为图的高度大小不一造成的布局混乱, display为flex, flex-wrap为默认情况下，项目都排在一条线（又称"轴线"）
+    上。flex-wrap属性定义，如果一条轴线排不下，有三种换行方式，其中wrap为换行，第一行在上方。-->
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <!--<div class="row text-center flex-wrap" id="campground-grid">-->
+        <!--一个large占了12格-->
+        <!--<div class="col-lg-12">-->
+        <!--    <h3>our most popular site</h3>-->
+        <!--</div>-->
+        <!--here is the data where we pass,对应app.js页面下app.get("/campgrounds")里res.render("campgrounds", {campgrounds: campgrounds})
+        第二个campgrounds-->
+        <% campgrounds.forEach(function(campground) { %>
+        <!--col为medium占了3格-->
+            <div class="col-md-3 col-sm-6">
+                <!--thumbnail 在Bootstrap框架中真实含义：缩略图-->
+                <div class="thumbnail">
+                    <img src="<%= campground.image %>"> 
+                    <!--caption 元素定义表格标题。caption 标签必须紧随 table 标签之后。只能对每个表格定义一个标题。通常这个标题会被居中于表格之上。-->
+                    <div class="caption">
+                        <h4><%= campground.name %></h4>
+                    </div>
+                    <p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More</a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+<!--</div>-->
+<% include ../partials/footer %>
